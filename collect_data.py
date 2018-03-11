@@ -9,6 +9,10 @@ S = [0, 0, 1, 0, 0]
 D = [0, 0, 0, 1, 0]
 NOMOVE = [0, 0, 0, 0, 1]
 
+
+WIDTH = 800
+HEIGHT = 600
+
 collected_data = []
 file_name = "collected_data.npy"
 
@@ -33,7 +37,7 @@ def main():
     for i in range(10):
         t = time.time()
         output = getKeys()
-        screen = grab_screen()
+        screen = grab_screen(WIDTH, HEIGHT)
         output = tansform(output)
         arr = [screen, output]
         collected_data.append(arr)
