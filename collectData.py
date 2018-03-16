@@ -18,17 +18,7 @@ HEIGHT = 600
 
 
 
-def Pause(Paused):    
-    if 'P' in keys:
-        if Paused:
-            Paused = False
-            time.sleep(1)
-        else:
-            Paused = True
-            ReleaseKey(A)
-            ReleaseKey(W)
-            ReleaseKey(D)
-            time.sleep(1)
+
 
 def tansform(out):
 
@@ -68,5 +58,5 @@ def main():
             print(time.time() - t)
     countDown(5)
     currentKeys = key_check()
-    Pause()
+    Pause(Paused)
 main()
