@@ -39,6 +39,7 @@ def main():
     file_name = "collectedData/training_data-{1}"
     partNumber =1
     Paused = False
+    countDown(5)
     while (True):
         if not Paused:
             t = time.time()
@@ -56,7 +57,6 @@ def main():
                 partNumber += 1
                 file_name = 'collectedData/trainingData-{}.npy'.format(partNumber)
             print(time.time() - t)
-    countDown(5)
     currentKeys = key_check()
     Pause(Paused)
 main()
