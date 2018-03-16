@@ -24,4 +24,5 @@ def right():
      time.sleep(deviationSpeed)
      ReleaseKey(D)     
 
-     
+
+forward()

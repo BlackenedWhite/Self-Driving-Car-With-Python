@@ -3,7 +3,7 @@ import time
 
 
 keyList = []
-for char in "WASD":
+for char in "WASDTQ":
     keyList.append(char)
 
 
@@ -15,7 +15,7 @@ def getKeys():
                 keys.append(key)
         return keys
     except:
-        pass
+        return keys
 
 
 def main():
