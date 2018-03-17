@@ -22,13 +22,13 @@ HEIGHT = 600
 def tansform(out):
 
     if "D" in out:
-        out = W
+        out = D
     elif "A" in out:
         out = A
     elif "S" in out:
         out = S
     elif "W" in out:
-        out = D
+        out = W
     else:
         out = NOMOVE
     return out
