@@ -21,13 +21,13 @@ HEIGHT = 600
 
 def tansform(out):
 
-    if "W" in out:
+    if "D" in out:
         out = W
     elif "A" in out:
         out = A
     elif "S" in out:
         out = S
-    elif "D" in out:
+    elif "W" in out:
         out = D
     else:
         out = NOMOVE
@@ -61,7 +61,7 @@ def main():
             output = tansform(output)
             images.append(screen)
             outputs.append(output)
-            arr = [screen, output]
+#            arr = [screen, output]
 #            collected_data.append(arr)
             if len(images) % 100 == 0:
                 print(len(collected_data))
