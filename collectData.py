@@ -3,7 +3,7 @@ from screenGrap import *
 import numpy as np
 import time
 from extras import *
-
+import cv2
 
 W = [1, 0, 0, 0, 0]
 A = [0, 1, 0, 0, 0]
