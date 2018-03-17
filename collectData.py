@@ -4,6 +4,7 @@ import numpy as np
 import time
 from extras import *
 import cv2
+import os
 
 W = [1, 0, 0, 0, 0]
 A = [0, 1, 0, 0, 0]
@@ -37,10 +38,18 @@ def main():
     images = []
     outputs = []
     collected_data = []
-    file_name = "collectedData/collected_data-1.npy"
     partNumber = 1
     collect = True
     Paused = False
+
+    while(True):
+        file_name = "collectedData/collected_data-{}.npy".format(partNumber)
+        if (os.path.isfile(file_name)):
+            partNumber += 1
+        else:
+            print("file don't exist, new partNumber: ", partNumber)
+            break
+
     countDown(5)
 
     while (collect):
@@ -48,7 +57,7 @@ def main():
             t = time.time()
             output = getKeys()
             screen = grab_screen(WIDTH, HEIGHT)
-            screen = cv2.resize(screen, (WIDTH//4, HEIGHT//4))
+            screen = cv2.resize(screen, (WIDTH // 4, HEIGHT // 4))
             output = tansform(output)
             images.append(screen)
             outputs.append(output)
@@ -64,7 +73,8 @@ def main():
                 images = []
                 outputs = []
                 partNumber += 1
-                file_name = 'collectedData/collected_data-{}.npy'.format(partNumber)
+                file_name = 'collectedData/collected_data-{}.npy'.format(
+                    partNumber)
             print(time.time() - t)
 
         output = getKeys()
