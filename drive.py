@@ -15,7 +15,7 @@ def left():
      PressKey(A)
      ReleaseKey(D)   
      time.sleep(deviationSpeed)
-     ReleaseKey(D)
+     ReleaseKey(A)
 
 def right():
      PressKey(W)
@@ -24,5 +24,3 @@ def right():
      time.sleep(deviationSpeed)
      ReleaseKey(D)     
 
-
-forward()

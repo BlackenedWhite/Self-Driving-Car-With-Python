@@ -1,21 +1,9 @@
 import win32gui
 import win32ui
 import win32con
-import time
-from PIL import Image
 import numpy as np
-import cv2
 
-bmpfilenamename = "test"
-
-width = 800
-height = 600
-a = time.time()
-
-img = 0
-
-
-def grab_screen(width, height):
+def grab_screen(width = 800, height = 600):
 
     hwnd = win32gui.GetDesktopWindow()
     wDC = win32gui.GetWindowDC(hwnd)
@@ -31,11 +19,6 @@ def grab_screen(width, height):
     img = np.fromstring(signedIntsArray, dtype='uint8')
     img.shape = (height, width, 4)
 
-    # sh = Image.fromarray(img, "RGB")
-    # sh.show()
-    # cv2.imshow('window', img)
-    
-
     # Free Resources
     dcObj.DeleteDC()
     cDC.DeleteDC()
@@ -43,7 +26,3 @@ def grab_screen(width, height):
     win32gui.DeleteObject(dataBitMap.GetHandle())
     return img
 
-
-# grab_screen(width, height)
-# print(time.time() - a)
-# print(img)
