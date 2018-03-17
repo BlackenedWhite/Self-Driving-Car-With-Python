@@ -34,7 +34,8 @@ def tansform(out):
 
 
 def main():
-
+    images = []
+    outputs = []
     collected_data = []
     file_name = "collectedData/collected_data-1.npy"
     partNumber = 1
@@ -49,14 +50,19 @@ def main():
             screen = grab_screen(WIDTH, HEIGHT)
             screen = cv2.resize(screen, (WIDTH//4, HEIGHT//4))
             output = tansform(output)
+            images.append(screen)
+            outputs.append(output)
             arr = [screen, output]
-            collected_data.append(arr)
-            if len(collected_data) % 100 == 0:
+#            collected_data.append(arr)
+            if len(images) % 100 == 0:
                 print(len(collected_data))
-            if len(collected_data) == 200:
+            if len(images) == 200:
+                collected_data.append([images,outputs])
                 print('Saving data......')
                 np.save(file_name, collected_data)
                 collected_data = []
+                images = []
+                outputs = []
                 partNumber += 1
                 file_name = 'collectedData/collected_data-{}.npy'.format(partNumber)
             print(time.time() - t)
