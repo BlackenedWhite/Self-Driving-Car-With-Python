@@ -57,7 +57,7 @@ def main():
             t = time.time()
             output = getKeys()
             screen = grab_screen(WIDTH, HEIGHT)
-            screen = cv2.resize(screen, (WIDTH // 4, HEIGHT // 4))
+            screen = cv2.resize(screen, (100, 100))
             output = tansform(output)
             images.append(screen)
             outputs.append(output)
@@ -66,7 +66,7 @@ def main():
             if len(images) % 100 == 0:
                 print(len(collected_data))
             if len(images) == 200:
-                collected_data.append([images,outputs])
+                collected_data.append([images, outputs])
                 print('Saving data......')
                 np.save(file_name, collected_data)
                 collected_data = []

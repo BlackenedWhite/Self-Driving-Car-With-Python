@@ -19,7 +19,7 @@ def balance_data(file_name):
     y = list(data[1])
 
     for i in range(len(X)):
-        X[i] = X[i].reshape(120000)
+        X[i] = X[i].reshape(40000)
         y[i] = int(int(''.join(str(j) for j in y[i]), 2))
 
     X_resampled, y_resampled = ros.fit_sample(X, y)
@@ -28,7 +28,7 @@ def balance_data(file_name):
 
     for i in range(len(y_resampled)):
         balanced_y.append(dic[y_resampled[i]])
-        balanced_X.append(X_resampled[i].reshape(150, 200, 4))
+        balanced_X.append(X_resampled[i].reshape(100, 100, 4))
 
     collected_data = []
     collected_data.append([balanced_X, balanced_y])
