@@ -15,8 +15,8 @@ model.add(Flatten())
 # output layer
 model.add(Dense(5, activation="softmax"))
 
-#model.compile(optimizers.Adam(), loss='categorical_crossentropy',
-#              metrics=['accuracy'])
+model.compile(optimizers.Adam(), loss='categorical_crossentropy',
+              metrics=['accuracy'])
 
 model.summary()
 

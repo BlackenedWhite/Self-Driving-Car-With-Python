@@ -13,20 +13,22 @@ tbCallBack = callbacks.TensorBoard(
 
 # model.summary()
 
-for e in range(30):
-    for i in range(1, 5):
-        file_name = 'collectedData/collected_data-{}.npy'.format(i)
-        data = np.load(file_name)
-        x = list(data[0][0])
-        X = np.array(x, dtype="float") / 255.0
-        y = list(data[0][1])
-        y = np.array(y)
-        print("Start Fitting File {} ...\n".format(i))
-        model.fit(X, y, validation_split=0.20, batch_size=10, epochs=1,
-                  shuffle=True, verbose=2, callbacks=[tbCallBack])
-        print("\nFinished Fitting File {} ...\n".format(i))
-        print('......SAVING MODEL......\n')
-        model.save("second_model.h5")
+start_file = 5
+finish_file = 6
+
+for i in range(start_file, finish_file):
+    file_name = 'collectedData/collected_data-{}.npy'.format(i)
+    data = np.load(file_name)
+    x = list(data[0][0])
+    X = np.array(x, dtype="float") / 255.0
+    y = list(data[0][1])
+    y = np.array(y)
+    print("\nStart Fitting File {} ...".format(i))
+    model.fit(X, y, validation_split=0.20, batch_size=10, epochs=30,
+              shuffle=True, verbose=1, callbacks=[tbCallBack])
+    print("Finished Fitting File {} ...".format(i))
+    print('......SAVING MODEL......\n')
+    model.save("second_model.h5")
 
 
 #from keras.utils import plot_model
