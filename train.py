@@ -14,7 +14,7 @@ tbCallBack = callbacks.TensorBoard(
 # model.summary()
 
 for e in range(30):
-    for i in range(1, 60):
+    for i in range(1, 5):
         file_name = 'collectedData/collected_data-{}.npy'.format(i)
         data = np.load(file_name)
         x = list(data[0][0])
@@ -25,8 +25,8 @@ for e in range(30):
         model.fit(X, y, validation_split=0.20, batch_size=10, epochs=1,
                   shuffle=True, verbose=2, callbacks=[tbCallBack])
         print("\nFinished Fitting File {} ...\n".format(i))
-        print('......SAVING MODEL......\n\n')
-        model.save("first_model.h5")
+        print('......SAVING MODEL......\n')
+        model.save("second_model.h5")
 
 
 #from keras.utils import plot_model

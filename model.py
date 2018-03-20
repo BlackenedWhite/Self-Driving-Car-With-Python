@@ -1,6 +1,6 @@
 from keras import optimizers
 from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Activation, Dense, Flatten
+from keras.layers import Conv2D, MaxPooling2D, Activation, Dense, Flatten, Dropout
 
 
 model = Sequential()
