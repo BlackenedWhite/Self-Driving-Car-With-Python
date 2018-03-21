@@ -6,13 +6,13 @@ from extras import *
 import cv2
 import os
 
-W = [1, 0, 0, 0, 0]
-A = [0, 1, 0, 0, 0]
-S = [0, 0, 1, 0, 0]
-D = [0, 0, 0, 1, 0]
-NOMOVE = [0, 0, 0, 0, 1]
+W = [1, 0, 0, 0]
+A = [0, 1, 0, 0]
+S = [0, 0, 1, 0]
+D = [0, 0, 0, 1]
+NOMOVE = [0, 0, 0, 0]
 
-output = [0, 0, 0, 0, 0]
+output = [0, 0, 0, 0]
 
 
 WIDTH = 800
@@ -43,7 +43,7 @@ def main():
     Paused = False
 
     while(True):
-        file_name = "collectedData/collected_data-{}.npy".format(partNumber)
+        file_name = "newData/collected_data-{}.npy".format(partNumber)
         if (os.path.isfile(file_name)):
             partNumber += 1
         else:
@@ -73,7 +73,7 @@ def main():
                 images = []
                 outputs = []
                 partNumber += 1
-                file_name = 'collectedData/collected_data-{}.npy'.format(
+                file_name = 'newData/collected_data-{}.npy'.format(
                     partNumber)
             print(time.time() - t)
 

@@ -4,17 +4,16 @@ from keras import callbacks
 import numpy as np
 
 
-model = load_model("second_model.h5")
-model.compile(optimizers.Adam(), loss='categorical_crossentropy',
-              metrics=['accuracy'])
+model = load_model("new_model.h5")
+model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
+
+model.summary()
 
 tbCallBack = callbacks.TensorBoard(
-    log_dir='./graph', histogram_freq=0, write_graph=True, write_images=True)
+    log_dir='./graph_nmodel', histogram_freq=0, write_graph=True, write_images=True)
 
-# model.summary()
-
-start_file = 5
-finish_file = 6
+start_file = 7
+finish_file = 20
 
 for i in range(start_file, finish_file):
     file_name = 'collectedData/collected_data-{}.npy'.format(i)
@@ -28,7 +27,7 @@ for i in range(start_file, finish_file):
               shuffle=True, verbose=1, callbacks=[tbCallBack])
     print("Finished Fitting File {} ...".format(i))
     print('......SAVING MODEL......\n')
-    model.save("second_model.h5")
+    model.save("new_model.h5")
 
 
 #from keras.utils import plot_model

@@ -21,4 +21,4 @@ model.compile(optimizers.Adam(), loss='categorical_crossentropy',
 model.summary()
 
 #model.save('first_model.h5')
-model.save('second_model.h5')    
+#model.save('second_model.h5')    
