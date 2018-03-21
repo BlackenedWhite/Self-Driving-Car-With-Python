@@ -4,13 +4,12 @@ from imblearn.combine import SMOTEENN
 import os
 
 
-dic = {16: [1, 0, 0, 0, 0], 8: [0, 1, 0, 0, 0], 4: [0, 0, 1, 0, 0],
-       2: [0, 0, 0, 1, 0], 1: [0, 0, 0, 0, 1], 0: [0, 0, 0, 0, 0]}
+dic = {8: [1, 0, 0, 0], 4: [0, 1, 0, 0],
+       2: [ 0, 0, 1, 0], 1: [0, 0, 0, 1], 0: [0, 0, 0, 0]}
 file_num = 1
 file_name = 'collectedData/collected_data-{}'.format(file_num)
 
 ros = RandomOverSampler()
-smote = SMOTEENN()
 
 def balance_data(file_name):
     saved_file = file_name + '.npy'
@@ -19,18 +18,23 @@ def balance_data(file_name):
     data = collected_data[0]
     X = list(data[0])
     y = list(data[1])
-
+    shape = X[0].shape
+    dim = shape[0]*shape[1]*shape[2]
+    print(shape)
+    print(dim)
     for i in range(len(X)):
-        X[i] = X[i].reshape(40000)
+        X[i] = X[i].reshape(dim)
         y[i] = int(int(''.join(str(j) for j in y[i]), 2))
-
+    X = np.array(X)
+    y = np.array(y)
+    smote = SMOTEENN()
     X_resampled, y_resampled = smote.fit_sample(X, y)
     balanced_y = []
     balanced_X = []
 
     for i in range(len(y_resampled)):
         balanced_y.append(dic[y_resampled[i]])
-        balanced_X.append(X_resampled[i].reshape(100, 100, 4))
+        balanced_X.append(X_resampled[i].reshape(shape[0], shape[1], shape[2]))
 
     collected_data = []
     collected_data.append([balanced_X, balanced_y])
