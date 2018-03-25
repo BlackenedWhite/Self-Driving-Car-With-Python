@@ -25,3 +25,9 @@ def right():
      ReleaseKey(A)
      time.sleep(deviationSpeed)
      ReleaseKey(D)
+
+
+def release_all():
+     ReleaseKey(A)
+     ReleaseKey(W)
+     ReleaseKey(D)

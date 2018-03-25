@@ -1,11 +1,11 @@
 import numpy as np
 import cv2
 
-x = np.load('collectedData/training_data-1.npy')
+x = np.load('newData/collected_data-66.npy')
 
 
-img = x [5][0]
-output = x[5][1]
+img = x[0][0][0]
+output = x[0][1][0]
 
 
 print(output)

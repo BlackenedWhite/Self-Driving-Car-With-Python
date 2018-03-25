@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
 from scipy.stats import itemfreq
-collected_data = np.load('collectedData/collected_data-1_balanced.npy')
+#collected_data = np.load('collectedData/collected_data-1_balanced.npy')
+collected_data = np.load('newData/collected_data-23.npy')
 data = collected_data[0]
 
 X = list(data[0])
