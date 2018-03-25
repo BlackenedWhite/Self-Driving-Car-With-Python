@@ -16,9 +16,8 @@ def balance_data(file_name):
     saved_file = file_name + '.npy'
     print(file_name)
     collected_data = np.load(saved_file)
-    data = collected_data[0]
-    X = list(data[0])
-    y = list(data[1])
+    X = list(collected_data[0][0])
+    y = list(collected_data[0][1])
     for i in range(len(X)):
         X[i] = cv2.cvtColor(X[i],cv2.COLOR_RGBA2RGB)
     shape = X[0].shape
