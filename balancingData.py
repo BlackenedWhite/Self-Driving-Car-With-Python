@@ -1,8 +1,9 @@
 import numpy as np
 from imblearn.over_sampling import RandomOverSampler
+from imblearn.under_sampling import RandomUnderSampler
 from imblearn.combine import SMOTEENN
 import os
-
+import cv2
 
 dic = {8: [1, 0, 0, 0], 4: [0, 1, 0, 0],
        2: [ 0, 0, 1, 0], 1: [0, 0, 0, 1], 0: [0, 0, 0, 0]}
@@ -18,6 +19,8 @@ def balance_data(file_name):
     data = collected_data[0]
     X = list(data[0])
     y = list(data[1])
+    for i in range(len(X)):
+        X[i] = cv2.cvtColor(X[i],cv2.COLOR_RGBA2RGB)
     shape = X[0].shape
     dim = shape[0]*shape[1]*shape[2]
     print(shape)
@@ -27,8 +30,8 @@ def balance_data(file_name):
         y[i] = int(int(''.join(str(j) for j in y[i]), 2))
     X = np.array(X)
     y = np.array(y)
-    smote = SMOTEENN()
-    X_resampled, y_resampled = smote.fit_sample(X, y)
+    rus = RandomUnderSampler()
+    X_resampled, y_resampled = rus.fit_sample(X, y)
     balanced_y = []
     balanced_X = []
 
