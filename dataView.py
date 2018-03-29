@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from scipy.stats import itemfreq
 #collected_data = np.load('collectedData/collected_data-1_balanced.npy')
-collected_data = np.load('newData/collected_data-23.npy')
+collected_data = np.load('newData/all_data_balanced.npy')
 data = collected_data[0]
 
 X = list(data[0])
@@ -13,6 +13,20 @@ plapla = []
 for i in range(len(y)):
     plapla.append(np.argmax(y[i]))
 print(itemfreq(plapla))
+
+#collected_data = np.load('newData/balanced/collected_data-50_balanced.npy')
+#data = collected_data[0]
+#
+#X = list(data[0])
+#y = list(data[1])
+##
+#plapla = []
+#
+#for i in range(len(y)):
+#    plapla.append(np.argmax(y[i]))
+#print(itemfreq(plapla))
+
+
 #for i in range(20):
 #    img = X[i+20]
 #    output = y[i+20]

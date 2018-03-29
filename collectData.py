@@ -6,13 +6,13 @@ from extras import *
 import cv2
 import os
 
-W = [1, 0, 0, 0]
-A = [0, 1, 0, 0]
-S = [0, 0, 1, 0]
-D = [0, 0, 0, 1]
-NOMOVE = [0, 0, 0, 0]
+W = [1, 0, 0]
+A = [0, 1, 0]
+D = [0, 0, 1]
+NM = [0, 0, 0]
+# S = [0, 0, 1, 0]
 
-output = [0, 0, 0, 0]
+output = [0, 0, 0]
 
 
 WIDTH = 800
@@ -25,12 +25,12 @@ def tansform(out):
         out = D
     elif "A" in out:
         out = A
-    elif "S" in out:
-        out = S
-    elif "W" in out:
-        out = W
+    # elif "S" in out:
+    #     out = S
+    # elif "W" in out:
+    #     out = W
     else:
-        out = NOMOVE
+        out = W
     return out
 
 
@@ -64,10 +64,10 @@ def main():
 #            arr = [screen, output]
 #            collected_data.append(arr)
             if len(images) % 100 == 0:
-                print(len(collected_data))
+                print(len(images))
             if len(images) == 200:
                 collected_data.append([images, outputs])
-                print('Saving data......')
+                print('\tSaving file number {}'.format(partNumber))
                 np.save(file_name, collected_data)
                 collected_data = []
                 images = []
@@ -75,7 +75,7 @@ def main():
                 partNumber += 1
                 file_name = 'newData/collected_data-{}.npy'.format(
                     partNumber)
-            print(time.time() - t)
+            # print(time.time() - t)
 
         output = getKeys()
 

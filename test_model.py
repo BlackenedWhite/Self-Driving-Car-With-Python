@@ -36,11 +36,12 @@ classifier.add(Flatten())
 
 # Step 4 - Full connection
 classifier.add(Dense(units = 128, activation = 'relu'))
-classifier.add(Dense(units = 4, activation = 'sigmoid'))
+classifier.add(Dense(units = 3, activation = 'sigmoid'))
 
 # Compiling the CNN
-#classifier.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
+classifier.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 
 
 classifier.summary()
-classifier.save('new_model_2.2.h5')    
+# classifier.save('new_model_2.4.h5')    
+classifier.save('plapla.h5')    

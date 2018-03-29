@@ -12,14 +12,11 @@ file_name = 'newData/collected_data-{}'.format(file_num)
 
 ros = RandomOverSampler()
 
-def balance_data(file_name):
-    saved_file = file_name + '.npy'
-    print(file_name)
-    collected_data = np.load(saved_file)
-    data = collected_data[0]
-    X = list(data[0])
-    y = list(data[1])
-    print(X[0], y[0])
+def balance_data(x, y):
+    print("start balancing....")
+    X = list(x)
+    y = list(y)
+    print(X[0],y[0])
     for i in range(len(X)):
         X[i] = cv2.cvtColor(X[i],cv2.COLOR_RGBA2RGB)
     shape = X[0].shape
@@ -42,16 +39,23 @@ def balance_data(file_name):
 
     collected_data = []
     collected_data.append([balanced_X, balanced_y])
-    np.save(file_name + '_balanced.npy', collected_data)
+    print("finished .... Saving...")
+    np.save('all_data_balanced.npy', collected_data)
 
 
 while(True):
     file_name = "newData/collected_data-{}".format(file_num)
+    print(file_num)
     if (os.path.isfile(file_name + '.npy')):
-        balance_data(file_name)
+        data = np.load(file_name + '.npy')
+        if file_num == 1:
+            all_imgs = np.array(data[0][0])
+            all_output = np.array(data[0][1])
+        else:
+            all_imgs = np.append(all_imgs, data[0][0])
+            all_output = np.append(all_output, data[0][1])
         file_num += 1
-        if file_num == 2:
-            break
     else:
+        balance_data(all_imgs, all_output)
         print("balanced all data")
         break

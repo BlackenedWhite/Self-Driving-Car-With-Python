@@ -5,20 +5,30 @@ from screenGrap import *
 from drive import *
 from getKeys import *
 from scipy.stats import itemfreq
+import pandas as pd
+from collections import Counter
 
 
-model = load_model("new_model_2.2.h5")
+# model = load_model("./models/model_2.4.4-E007.h5")
+model = load_model("./models/all_data/model_2.4-E030-vloss0.73-vacc0.95.h5")
 # w = model.get_weights()
 play = True
 Paused = False
 
-file_name = 'newData/collected_data-50.npy'
+file_name = 'newData/fixed/collected_data-50.npy'
 data = np.load(file_name)
-x = list(data[0][0])
-y = list(data[0][1])
+x = list(data[0])
+y = list(data[1])
+data = []
 x = np.array(x, dtype="float") / 255.0
-#arr = np.array([x])
+arr = np.array([x[50]])
+out = y[50]
+
 result = model.predict(x)
+for res in result:
+	res[0] *= .5
+	res[1] *= 1.4
+	res[2] *= 1.4
 model.summary()
 
 
@@ -34,31 +44,34 @@ for i in range(len(result)):
 print(itemfreq(plapla))
 
 
-## ...PLAYING... 
+# ...PLAYING...
 
 # for i in range(5):
 #    print(i)
 #    time.sleep(1)
-#
+
 # while play:
 #    if not Paused:
 #        img = grab_screen(800, 600)
 #        img = cv2.resize(img, (100, 100))
 #        arr = np.array([img])
 #        result = model.predict(arr)
+#        result[0][0] *= .5
+#        result[0][1] *= 1.4
+#        result[0][2] *= 1.4
 #        result = np.argmax(result)
 #        print(result)
 #        if result == 0:
 #            forward()
 #        elif result == 1:
 #            left()
-#        elif result == 3:
+#        elif result == 2:
 #            right()
 #        else:
 #            print("NO MOOOOOVE..................")
-#
+
 #    keys = getKeys()
-#
+
 #    if 'T' in keys:
 #        if Paused:
 #            print("Rusemed")
@@ -69,7 +82,7 @@ print(itemfreq(plapla))
 #            print("Paused")
 #            Paused = True
 #            time.sleep(1)
-#
+
 #    if 'Q' in keys:
 #        release_all()
 #        print("...END...")
