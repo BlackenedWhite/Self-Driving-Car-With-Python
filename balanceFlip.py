@@ -2,8 +2,8 @@ import numpy as np
 import os
 import cv2
 
-dic = {4: [1, 0, 0],
-       2: [0, 1, 0], 1: [0, 0, 1], 0: [0, 0, 0]}
+dic = {8: [1,0,0,0],4: [0,1, 0, 0],
+       2: [0,0, 1, 0], 1: [0,0, 0, 1], 0: [0,0, 0, 0]}
 file_num = 1
 file_name = 'newData/collected_data-{}'.format(file_num)
 IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNELS = 66, 200, 3
@@ -42,34 +42,34 @@ def balance_data(file_name):
     y = list(data[1])
     for i in range(len(X)):
         X[i] = cv2.cvtColor(X[i],cv2.COLOR_RGBA2RGB)
-    balanced_X, balanced_y = []
+    balanced_X, balanced_y = [],[]
     for i in range(len(X)):
         image = X[i]
-        image = random_shadow(image)
         image = random_brightness(image)
         balanced_X.append(image)
         balanced_y.append(y[i])
-        if (y[i] == dic[2]):
+        if (y[i] == dic[4]):
             balanced_X.append(cv2.flip(image, 1))
-            balanced_y.append(dic[1])
-        elif (y[i] == dic[1]):
+            balanced_y.append(dic[2])
+        elif (y[i] == dic[2]):
            balanced_X.append(cv2.flip(image, 1))
-           balanced_y.append(dic[2])
+           balanced_y.append(dic[4])
             
 
     collected_data = []
-    return collected_data.append([balanced_X, balanced_y])
-#    np.save(file_name + '_balanced.npy', collected_data)
+    collected_data.append([balanced_X, balanced_y])
+    
+    np.save(file_name + '_balanced.npy', collected_data)
+    return collected_data
 
-
-b = balance_data(1)
-#while(True):
-#    file_name = "newData/collected_data-{}".format(file_num)
-#    if (os.path.isfile(file_name + '.npy')):
-#        balance_data(file_name)
-#        file_num += 1
+#b = balance_data(file_name)
+while(True):
+    file_name = "newData/collected_data-{}".format(file_num)
+    if (os.path.isfile(file_name + '.npy')):
+        balance_data(file_name)
+        file_num += 1
 #        if file_num == 2:
 #            break
-#    else:
-#        print("balanced all data")
-#        break
+    else:
+        print("balanced all data")
+        break

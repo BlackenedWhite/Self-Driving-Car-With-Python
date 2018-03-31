@@ -6,13 +6,14 @@ from extras import *
 import cv2
 import os
 
-W = [1, 0, 0]
-A = [0, 1, 0]
-D = [0, 0, 1]
-NM = [0, 0, 0]
-# S = [0, 0, 1, 0]
+W = [1, 0, 0,0]
+A = [0, 1, 0,0]
+D = [0, 0, 1,0]
+S = [0, 0, 0, 1]
+NM = [0, 0, 0,0]
 
-output = [0, 0, 0]
+
+output = NM
 
 
 WIDTH = 800
@@ -57,7 +58,7 @@ def main():
             t = time.time()
             output = getKeys()
             screen = grab_screen(WIDTH, HEIGHT)
-            screen = cv2.resize(screen, (100, 100))
+            screen = cv2.resize(screen, (200, 66))
             output = tansform(output)
             images.append(screen)
             outputs.append(output)
