@@ -2,8 +2,8 @@ import numpy as np
 import os
 import cv2
 
-dic = {8: [1,0,0,0],4: [0,1, 0, 0],
-       2: [0,0, 1, 0], 1: [0,0, 0, 1], 0: [0,0, 0, 0]}
+dic = {4: [1, 0, 0],
+       2: [0, 1, 0], 1: [0, 0, 1], 0: [0, 0, 0]}
 file_num = 1
 file_name = 'newData/collected_data-{}'.format(file_num)
 IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNELS = 66, 200, 3
@@ -48,12 +48,12 @@ def balance_data(file_name):
         image = random_brightness(image)
         balanced_X.append(image)
         balanced_y.append(y[i])
-        if (y[i] == dic[4]):
+        if (y[i] == dic[2]):
             balanced_X.append(cv2.flip(image, 1))
-            balanced_y.append(dic[2])
-        elif (y[i] == dic[2]):
+            balanced_y.append(dic[1])
+        elif (y[i] == dic[1]):
            balanced_X.append(cv2.flip(image, 1))
-           balanced_y.append(dic[4])
+           balanced_y.append(dic[2])
             
 
     collected_data = []
